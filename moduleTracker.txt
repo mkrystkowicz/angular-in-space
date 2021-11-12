@@ -1,1 +1,1 @@
-TypeScript | Misja 2
+Dziedziczenie klas | Misja 3
