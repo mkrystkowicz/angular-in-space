@@ -3,8 +3,21 @@
     class="hangar-section"
     *ngFor="let spaceShip of spaceShips"
     [spaceShip]="spaceShip"
-  ></app-space-ship>
+  >
+    <button
+      *ngIf="selectedPilot && !spaceShip.pilot"
+      (click)="assignPilot(spaceShip)"
+    >
+      Pilotuj
+    </button>
+    <button *ngIf="spaceShip.pilot" (click)="deassignPilot(spaceShip)">
+      Odblokuj
+    </button>
+  </app-space-ship>
 </div>
 <div>
-  <app-pilot-room class="hangar-section"></app-pilot-room>
+  <app-pilot-room
+    class="hangar-section"
+    (selected)="setSelectedPilot($event)"
+  ></app-pilot-room>
 </div>
