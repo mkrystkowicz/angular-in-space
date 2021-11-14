@@ -27,6 +27,9 @@
     </label>
   </div>
   <div class="control-group">
-    <button type="submit" [disabled]="form.invalid">Produkuj</button>
+    <button type="submit" [disabled]="form.invalid || isProducing">
+      Produkuj
+    </button>
+    <p *ngIf="isProducing">Trwa produkcja...</p>
   </div>
 </form>

@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BomberShip } from '../bomber-ship';
-import { FighterShip } from '../fighter-ship';
 import { Pilot } from '../pilot';
 import { PilotRoomComponent } from '../pilot-room/pilot-room.component';
 import { SpaceShip } from '../space-ship';
@@ -16,14 +14,7 @@ export class HangarComponent implements OnInit {
   @ViewChild(PilotRoomComponent) pilotRoom!: PilotRoomComponent;
   constructor() {}
 
-  ngOnInit(): void {
-    this.spaceShips.push(new FighterShip());
-    this.spaceShips.push(
-      new BomberShip(new Pilot('Artur Bąk', '/assets/pilot.jpeg'))
-    );
-    this.spaceShips.push(new FighterShip());
-    this.spaceShips.push(new FighterShip(new Pilot('Czarek Smoła')));
-  }
+  ngOnInit(): void {}
 
   setSelectedPilot(pilot: Pilot | null) {
     this.selectedPilot = pilot;

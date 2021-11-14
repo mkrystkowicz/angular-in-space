@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderFormValue } from '../order-form-value';
+import { SpaceShip } from '../space-ship';
 import { SpaceShipType } from '../space-ship-type';
+import { SpaceShipService } from '../space-ship.service';
 
 interface ShipType {
   label: string;
@@ -19,7 +21,9 @@ export class EngineersRoomComponent implements OnInit {
     { label: 'Bombowiec', value: SpaceShipType.Bomber },
   ];
   form!: FormGroup;
-  constructor() {}
+  isProducing: boolean = false;
+  @Output() shipProduced = new EventEmitter<SpaceShip>();
+  constructor(private spaceShipService: SpaceShipService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -33,6 +37,10 @@ export class EngineersRoomComponent implements OnInit {
   }
 
   orderSpaceShips(formValue: OrderFormValue) {
-    console.log(formValue);
+    this.isProducing = true;
+    this.spaceShipService.produceShips(formValue).subscribe({
+      next: (ship) => this.shipProduced.emit(ship),
+      complete: () => (this.isProducing = false),
+    });
   }
 }
