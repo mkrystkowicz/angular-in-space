@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderFormValue } from '../order-form-value';
-import { SpaceShip } from '../space-ship';
 import { SpaceShipType } from '../space-ship-type';
 import { SpaceShipService } from '../space-ship.service';
 
@@ -22,7 +22,9 @@ export class EngineersRoomComponent implements OnInit {
   ];
   form!: FormGroup;
   isProducing: boolean = false;
-  @Output() shipProduced = new EventEmitter<SpaceShip>();
+  shipsCount = this.spaceShipService.hangarShips.pipe(
+    map((ships) => ships.length)
+  );
   constructor(private spaceShipService: SpaceShipService) {}
 
   ngOnInit(): void {
@@ -39,7 +41,6 @@ export class EngineersRoomComponent implements OnInit {
   orderSpaceShips(formValue: OrderFormValue) {
     this.isProducing = true;
     this.spaceShipService.produceShips(formValue).subscribe({
-      next: (ship) => this.shipProduced.emit(ship),
       complete: () => (this.isProducing = false),
     });
   }

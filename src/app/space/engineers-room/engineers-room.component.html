@@ -31,5 +31,6 @@
       Produkuj
     </button>
     <p *ngIf="isProducing">Trwa produkcja...</p>
+    <p>Aktualna liczba statków w hangarze: {{ shipsCount | async }}</p>
   </div>
 </form>
