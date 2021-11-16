@@ -1,0 +1,8 @@
+.black-hole {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/assets/czarna-dziura.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
