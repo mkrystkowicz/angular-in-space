@@ -5,3 +5,12 @@
 .hangar-section {
   flex: 1;
 }
+
+a {
+  font-weight: bold;
+  color: white;
+}
+
+a.active {
+  color: orange;
+}

@@ -26,4 +26,10 @@ export class SpaceShipService {
       )
     );
   }
+
+  removeShip(index: number) {
+    const ships = [...this.hangarShips.getValue()];
+    ships.splice(index, 1);
+    this.hangarShips.next(ships);
+  }
 }
