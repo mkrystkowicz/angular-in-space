@@ -16,4 +16,10 @@ export class PilotService {
       .get<PilotAttrs[]>(`${environment.apiUrl}/pilots`)
       .pipe(map((data) => data.map((pilotAttrs) => new Pilot(pilotAttrs))));
   }
+
+  getPilot(id: number): Observable<Pilot> {
+    return this.http
+      .get<PilotAttrs>(`${environment.apiUrl}/pilot/${id}`)
+      .pipe(map((pilotAttrs) => new Pilot(pilotAttrs)));
+  }
 }
